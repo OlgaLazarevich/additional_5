@@ -1,44 +1,34 @@
 module.exports = function check(str, bracketsConfig) {
-  var arr = str.split('');
-
-    var first = '(',
-    second = ')',
-    fruits = [],
-    result = '';
+    
+    let open = bracketsConfig;
+        close = bracketsConfig;
+        ;
+    
+    let arr = str.split(''),
+        middle = arr.length / 2;
     
     
+   
     
-  for (let i = 0, len = arr.length; i < len ; i++) {
     
-    for (let i = 0, len = arr.length; i < len ; i++) { 
-        if (arr[i] == first && arr[i+1] == second){
+    for (let c = 0; c < middle ; c++){
+    
+        for (let i = 0, len = arr.length -1 ; i < len ; i++){ 
+    
 
-            // console.log( `${i} ${arr} ${arr[i]}`);
-
-    fruits.push(i);
-
+            if (arr[i] === open[0][0] && arr[i+1] === open[0][1]){
+            
+                arr.splice(i, 2);
+                i -= 1;
+                len -= 2;
+            }  
         }
-        else {
-                // console.log(`${i} ${arr}`);
-            }
-
     }
-        // console.log(arr);
-        // console.log(fruits);
-
-    for (let i = 0, a = 0, len = fruits.length; i < len ; i++, a = 2){
-
-           arr.splice(fruits[i] - a, 2);
-        }
-    fruits = [];
-
-}
-
-  if (arr.length == 0){
-      result = true;
-  }
-    else {
-      result = false;
-  }
-    return result
+    
+    
+    let result = arr.length === 0? true: false;
+    
+    
+    
+  return result
 }
